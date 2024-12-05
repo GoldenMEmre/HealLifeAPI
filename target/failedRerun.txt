@@ -1,1 +1,0 @@
-file:src/test/resources/features/api/visitorPurpose/VisitorsPurposeDelete.feature:3

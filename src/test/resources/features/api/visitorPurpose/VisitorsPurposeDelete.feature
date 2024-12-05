@@ -1,5 +1,5 @@
 Feature: As an administrator (admin) I should be able to delete the visitor puspose record in the system via API connection.
-@US
+
   Scenario: A DELETE request to the "/api/visitorsPurposeDelete" endpoint with valid authorization
   and correct data (id) should return a 200 status code, a response body message of "Success," and the "DeletedId" in the
   response should match the "id" in the request body. The deletion should be confirmed by sending a GET request to the
@@ -51,6 +51,7 @@ Feature: As an administrator (admin) I should be able to delete the visitor pusp
     # Api kullanicisi response bodydeki message bilgisinin "No id or wrong id. Please check your id number." oldugunu dogrular
 
 
+
   Scenario: Invalid Token When a DELETE body is sent to the /api/visitorsPurposeDelete endpoint with invalid authorization information,
   it should be verified that the status code returned is 403 and the message in the response body is
   "You do not have authorization or token error".
@@ -77,4 +78,4 @@ Feature: As an administrator (admin) I should be able to delete the visitor pusp
 
     Examples:
       | id  |
-      | 758 |
+      | 772 |

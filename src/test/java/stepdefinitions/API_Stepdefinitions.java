@@ -1,7 +1,6 @@
 package stepdefinitions;
 
 import base.BaseTest;
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import io.cucumber.java.en.Given;
 import io.restassured.http.ContentType;
 import org.hamcrest.Matchers;
@@ -205,7 +204,7 @@ public class API_Stepdefinitions extends BaseTest {
 
     @Given("The api user prepares a DELETE request to send to the api visitorsPurposeDelete add endpoint.")
     public void the_api_user_prepares_a_delete_request_to_send_to_the_api_visitors_purpose_delete_add_endpoint() {
-        requestBody.put("id",772);
+        requestBody.put("id", 9658);
 
         System.out.println("Delete Body : " + requestBody);
     }
@@ -224,8 +223,30 @@ public class API_Stepdefinitions extends BaseTest {
 
     @Given("The api user verifies that the Deletedid information is the same as the id information in the request body")
     public void the_api_user_verifies_that_the_deletedid_information_is_the_same_as_the_id_information_in_the_request_body() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+        repJP = response.jsonPath();
+
+        Assert.assertEquals(requestBody.get("id"), repJP.getInt("DeletedId"));
     }
 
+    @Given("The api user prepares a DELETE request that does not contain data")
+    public void the_api_user_prepares_a_delete_request_that_does_not_contain_data() {
+
+    }
+
+    @Given("The api user sends a DELETE request, saves the returned response, and verifies that the status code is '403' with the reason phrase Forbidden.")
+    public void the_api_user_sends_a_delete_request_saves_the_returned_response_and_verifies_that_the_status_code_is_with_the_reason_phrase_forbidden() {
+        try {
+            response = given()
+                    .spec(spec)
+                    .contentType(ContentType.JSON)
+                    .when()
+                    .body(requestBody.toString())
+                    .delete(fullPath);
+        } catch (Exception e) {
+            exceptionMesaj = e.getMessage();
+        }
+
+        System.out.println("exceptionMesaj : " + exceptionMesaj);
+        Assert.assertEquals(configLoader.getApiConfig("unauthorizedExceptionMessage"),exceptionMesaj);
+    }
 }
