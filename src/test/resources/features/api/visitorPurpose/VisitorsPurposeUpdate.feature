@@ -114,4 +114,4 @@ Feature: As an administrator (admin), I should be able to update the visitor pur
 
     Examples:
       | id  |
-      | 756 |
+      | 766 |
